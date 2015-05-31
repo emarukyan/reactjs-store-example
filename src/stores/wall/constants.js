@@ -1,0 +1,3 @@
+module.exports = {
+	WALL_CHECK4UPDATES: "WALL_CHECK4UPDATES"
+}
