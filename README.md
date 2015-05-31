@@ -12,8 +12,10 @@ ReactNative - http://facebook.github.io/react-native/
 
 #Install
 dir setup
-	-reactjs
-	-nodeserver
+
+--reactjs
+
+--nodeserver
 
 cd nodeserver
 
