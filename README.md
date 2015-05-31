@@ -25,10 +25,11 @@ npm install
 
 grunt
 
+
 #nodeserver 
 Separate repo for frontend files
 Node Server Repo
-https://github.com/emarukyan/reactjs-store-front-nodejs/
+- https://github.com/emarukyan/reactjs-store-front-nodejs/
 
 Open page
 http://localhost:3000/
@@ -40,10 +41,3 @@ http://localhost:3000/
 1.2 JSX
 2. Stores
 3. Flux - One Way Flow
-
-.
-
-
-#Author
-Edgar Marukyan
-edgar@peyotto.com
