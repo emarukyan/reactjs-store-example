@@ -1,5 +1,4 @@
-
-
+#Links
 ReactJS - https://facebook.github.io/react/
 
 Example GIT Repo - https://github.com/emarukyan/reactjs-store-example
@@ -10,12 +9,21 @@ Future!
 ReactNative - http://facebook.github.io/react-native/
 
 
+#Install
+dir setup
+	-reactjs
+	-nodeserver
+
+cd nodeserver
+./bin/www
+cd ../reactjs
+npm install
+grunt
+
+http://localhost:3000/
 
 
-
-
-
-
+#Topics
 1. ReactJS
 1.1 Virtual DOM
 1.2 JSX
@@ -25,6 +33,6 @@ ReactNative - http://facebook.github.io/react-native/
 .
 
 
-
+#Author
 Edgar Marukyan
 edgar@peyotto.com
