@@ -27,8 +27,9 @@ grunt
 
 #nodeserver 
 Separate repo for frontend files
+Node Server Repo https://github.com/emarukyan/reactjs-store-front-nodejs/
 
-
+Open page.
 http://localhost:3000/
 
 
