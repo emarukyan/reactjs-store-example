@@ -1,5 +1,4 @@
 module.exports = function(grunt) {
-	//var dest_root = '/Users/edd/Documents/websites/ireporterstv3/htdocs/frontpage';
 	var dest_root = '../nodeserver/public';
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
