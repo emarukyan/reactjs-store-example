@@ -32,22 +32,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		sass: {
-			dist: {
-				options: {
-					style: 'compressed', //style: 'expanded',
-					sourcemap: 'none'
-				},
-				files: [{
-					expand: true,
-					cwd: 'styles',
-					src: ['scss/**/mian.scss'],
-					dest: '../frontpage/css',
-					ext: '.css'
-				}]
-			}
-		},
-
 		browserify: {
 			options: {
 				transform: [ require('grunt-react').browserify ]
@@ -77,7 +61,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-browserify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-minified');
 
 
