@@ -1,10 +1,12 @@
 var __SETTINGS = require('../conf.jsx');
 var CommentActions = require('../stores/comments/actions');
+var React = require('react');
+var ReactDOM = require('react-dom');
 
 
 var SingleComment = React.createClass({
 	getInitialState: function(){
-		return {style: {} };
+		return {style: {}, commentEdit:false };
 	},
 
 	formattedTime: function(utm) {
@@ -19,9 +21,32 @@ var SingleComment = React.createClass({
 		CommentActions.remove(comment_id, this.props.comment.post_id);
 	},
 
+	makeCommentEditable: function(){
+		console.log('makeCommentEditable');
+		this.setState({commentEdit:true});
+	},
+
+	onKeyPress: function(event) {
+		if (event.keyCode === 13) {
+			event.preventDefault()
+			comment_text = event.target.value
+			if( comment_text == '' ) { return; }
+			var comment_info = {
+				id: this.props.comment.id,
+				post_id: this.props.comment.post_id,
+				comment: comment_text,
+				user_id: __SETTINGS['user'].id};
+				console.log(this.refs.commentInput);
+			CommentActions.update(comment_info, this.props.comment.post_id);
+			this.setState({commentEdit: false});
+		}
+	},
+
 	render: function() {
 		var comment = this.props.comment;
 		var style = this.state.style;
+
+		var commentValue = comment.comment;
 
 		var removeCommentClass = 'hidden';
 		if( this.props.user_id == __SETTINGS['user'].id || comment.user_id == __SETTINGS['user'].id ) {
@@ -33,6 +58,10 @@ var SingleComment = React.createClass({
 			removeCommentClass = 'hidden';
 			style = {backgroundColor: '#6FD960'};
 		}
+		// edit button click
+		if( this.state.commentEdit === true ) {
+			commentValue = (<input id="editInput" defaultValue={comment.comment} onKeyUp={this.onKeyPress} ref={"commentInput"}/>);
+		}
 
 		return (
 			<div className="clearfix single-comment" style={style}>
@@ -41,14 +70,17 @@ var SingleComment = React.createClass({
 						<img src={comment.user_info.user_photo} />
 					</a>
 				</div>
+
 				<div className="comment-text">
 					<b><a className="comment-userlink" href={comment.user_info.user_url}>{comment.user_info.user_name}: </a></b>
-					{comment.comment}
+					{commentValue}
 				</div>
+
 				<div className="comment-date">
 					{this.formattedTime()}
 				</div>
 				<div className={removeCommentClass} onClick={this.commentRemoveHandler}>x</div>
+				<div className="editComment" onClick={this.makeCommentEditable}>Edit</div>
 			</div>
 			);
 	}

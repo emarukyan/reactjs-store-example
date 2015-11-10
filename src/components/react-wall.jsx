@@ -1,4 +1,6 @@
 var __SETTINGS = require('../conf.jsx');
+var React = require('react');
+var ReactDOM = require('react-dom');
 var WallPost = require('../components/react-wallpost.jsx');
 var PostActions = require('../stores/posts/actions');
 var WallStore = require('../stores/wall/store');

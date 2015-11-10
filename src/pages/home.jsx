@@ -1,4 +1,5 @@
 var __SETTINGS =  require('../conf.jsx');
+var React = require('react');
 var Wall = require('../components/react-wall.jsx');
 
 var PageHome = React.createClass({

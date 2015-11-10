@@ -1,4 +1,6 @@
 var __SETTINGS = require('../conf.jsx');
+var React = require('react');
+var ReactDOM = require('react-dom');
 var CommentsStore = require('../stores/comments/store');
 var CommentActions = require('../stores/comments/actions');
 var SingleComment = require('../components/react-singlecomment.jsx');
@@ -32,7 +34,7 @@ var PostComments = React.createClass({
 				post_id: this.props.postid,
 				comment: comment_text,
 				user_id: __SETTINGS['user'].id};
-			this.refs.commentInput.getDOMNode().value = '';
+			this.refs.commentInput.ReactDOM.findDOMNode().value = '';
 
 			CommentActions.create(this.props.postid, comment_info);
 		}

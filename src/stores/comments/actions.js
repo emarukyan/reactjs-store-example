@@ -17,6 +17,14 @@ var CommentActions = {
 			comment_id: comment_id,
 			post_id: post_id
 		});
+	},
+
+	update: function (comment_info, post_id){
+		AppDispatcher.dispatch({
+			actionType: CommentsConstants.COMMENT_UPDATE,
+			comment_info: comment_info,
+			post_id: post_id
+		});
 	}
 };
 

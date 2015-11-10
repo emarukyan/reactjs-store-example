@@ -105,6 +105,53 @@ var CommentsStore = assign({}, EventEmitter.prototype, {
 		});
 	},
 
+	updateComment: function(post_id, comment_info){
+		console.log('Update');
+		this.updatedExistingComment(post_id, comment_info);
+		return new Promise(function(resolve, reject){
+			$.ajax({
+				url: __SETTINGS['route.comments'],
+				dataType: "json",
+				data: comment_info,
+				method: "PUT",
+				xhrFields: {withCredentials: true},
+			}).done(function(){
+				resolve();
+			}).fail(function(){
+				reject();
+			});
+		});
+	},
+
+	updatedExistingComment: function(post_id, comment_info){
+		console.log('updateExistingComment');
+		console.log(comment_info);
+		console.log('*************');
+		var user_info = __SETTINGS['user'];
+		var comment = {
+			"id": comment_info.id,
+			"post_id": post_id,
+			"user_id": comment_info.user_id,
+			"comment": comment_info.comment,
+			"status": 1,
+			"user_info": user_info,
+			"value_date": Math.floor(Date.now() / 1000)
+		};
+		console.log(comment.comment);
+		console.log('#######################');
+		console.log(this._comments[post_id].comments);
+		var commentsArray = this._comments[post_id].comments;
+		for (var i = 0; i < commentsArray.length; i++) {
+			if (commentsArray[i].id == comment.id) {
+				commentsArray[i].comment = comment.comment;
+			break;
+			};
+		};
+		CommentsStore.emitChange();
+	},
+
+
+
 	emitChange: function() {
 		this.emit(CHANGE_EVENT);
 	},
@@ -133,6 +180,14 @@ var CommentsStore = assign({}, EventEmitter.prototype, {
 				var comment_id = payload.comment_id;
 				var post_id = payload.post_id;
 				CommentsStore.removeComment(comment_id, post_id).then(function(){
+					CommentsStore.getFromDb(post_id);
+				});
+				break;
+
+			case CommentsConstants.COMMENT_UPDATE:
+				var comment_info = payload.comment_info;
+				var post_id = payload.post_id;
+				CommentsStore.updateComment(post_id, comment_info).then(function(){
 					CommentsStore.getFromDb(post_id);
 				});
 				break;
