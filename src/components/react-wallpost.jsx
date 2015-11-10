@@ -1,4 +1,6 @@
 var __SETTINGS = require('../conf.jsx');
+var React = require('react');
+var ReactDOM = require('react-dom');
 var PostComments = require('../components/react-postcomments.jsx');
 var SharedUrl = require('../components/react-sharedurl.jsx');
 var PostActions = require('../stores/posts/actions');

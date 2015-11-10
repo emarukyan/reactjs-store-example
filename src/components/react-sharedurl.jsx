@@ -1,3 +1,5 @@
+var React = require('react');
+
 
 var SharedUrl = React.createClass({
 	getInitialState: function(){

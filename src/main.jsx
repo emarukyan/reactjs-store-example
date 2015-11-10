@@ -1,4 +1,6 @@
 var Router = require('react-router-component');
+var React = require('react');
+var ReactDOM = require('react-dom');
 
 var Locations = Router.Locations;
 var Location = Router.Location;
@@ -48,4 +50,4 @@ var App = React.createClass({
 });
 
 
-React.render(React.createElement(App), document.getElementById('content') );
+ReactDOM.render(React.createElement(App), document.getElementById('content') );
